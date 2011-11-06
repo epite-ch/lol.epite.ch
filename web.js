@@ -83,7 +83,7 @@ function displayPicture(res, path) {
     {
 	text_top = ((text[0]) ? unescape(text[0]) : data[face]['t_top']);
 	text_bot = ((text[1]) ? unescape(text[1]) : data[face]['t_bot']);
-	renderPicture(res, face, text_top.toUpperCase, text_bot.toUpperCase);
+	renderPicture(res, face, text_top.toUpperCase(), text_bot.toUpperCase());
     } else {
 	display404(res, path);
     }
