@@ -64,6 +64,7 @@ function display404(res, path) {
 function renderPicture(res, face, top, bot) {
     var img = require('imagemagick')
     var pic = data[face]['t_pic'];
+
     console.log('CALL_' + pic);
 
     img.convert([pic, '-font', './Impact.ttf', '-pointSize', '42', '-fill', 'white', '-stroke', 'black', '-strokewidth', '2',
@@ -88,7 +89,7 @@ function displayPicture(res, path) {
     text = path.substring(1, path.length-4).split(new RegExp('%1C', 'i'));
     if (((text.length == 3) || (text.length == 1)) && (data[text[0]]))
     {
-	face = data[text[0]];
+	face = text[0];
 	text.shift();
 	text_top = ((text[0]) ? unescape(text[0]) : data[face]['t_top']);
 	text_bot = ((text[1]) ? unescape(text[1]) : data[face]['t_bot']);
