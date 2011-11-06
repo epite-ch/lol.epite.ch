@@ -27,9 +27,17 @@ function displayIndex(res) {
     res.writeHead(200, {'Content-Type': 'text/html'});
     res.write('<h1>epiLOL macro generator!</h1>');
     res.write('<hr />');
-    res.write('Url scheme: http://epilol.dreamleaves.org/PERSO%1CTOP_TEXT%1CBOT_TEXT.png<br />');
+    res.write('Url scheme:<br / >');
+    res.write('- /{face}.png<br />');
+    res.write('- /{face}%1C{text_top}%1C{text_bot}.png<br />');
+    res.write('Url scheme (for promo 2016):<br />');
+    res.write('- /kwame.png<br />');
+    res.write('- /roxan%1Cfoo%1Cbar.png<br />');
+    res.write('- /sadirac%1Ccinq%20ans%1Cpour%20devenir%20un%20robot%20reconnu.png<br />');
+    res.write('- /shawan%1Cmiaou%1Cje%20suis%20un%20chat.png<br />');
+    res.write('- /pintade.png<br />');
     res.write('<br />');
-    res.write('<p style="font-size: 40%;">Written in node.js. Deal with it.<br />');
+    res.write('<p style="font-size: 60%;">Written in node.js. Deal with it.<br />');
     res.write('Node.js > Nginx > Apache > Wordpress > Fred Christian</p>');
     res.end();
 }
