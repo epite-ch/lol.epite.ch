@@ -31,7 +31,7 @@ function displayIndex(res) {
     res.write('Url scheme:<br / >');
     res.write('- /{face}.png<br />');
     res.write('- /{face}%1C{text_top}%1C{text_bot}.png<br />');
-    res.write('Rappel: ? = %3F<br />');
+    res.write('Reminder: ? = %3F<br />');
     res.write('<br />');
     res.write('Url scheme (for promo 2016):<br />');
     res.write('- /kwame.png<br />');
@@ -40,7 +40,7 @@ function displayIndex(res) {
     res.write('- /shawan%1Cmiaou%1Cje%20suis%20un%20chat.png<br />');
     res.write('- /pintade.png<br />');
     res.write('<br />');
-    res.write('<p style="font-size: 60%;">Written in node.js. Deal with it.<br />');
+    res.write('<p style="font-size: 60%;">Written in <a href="http://nodejs.org">node.js</a>. For science! (You monster...)<br />');
     res.write('Node.js > Nginx > Apache > Wordpress > Fred Christian</p>');
     res.end();
 }
