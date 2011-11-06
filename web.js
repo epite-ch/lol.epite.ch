@@ -43,7 +43,7 @@ function display404(res, path) {
 }
 
 function renderPicture(res, face, top, bot) {
-    var img = require('./imagemagick')
+    var img = require('imagemagick')
     var pic = data[face]['t_pic'];
 
     img.convert([pic, '-resize', '1000x1000', 'png:-'],
