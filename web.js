@@ -24,13 +24,14 @@ var data = {
 }
 
 function displayIndex(res) {
-    res.writeHead(200, {'Content-Type': 'text/plain'});
-    res.write('Node.js > Nginx > Apache > Wordpress > Fred Christian\n');
-    res.write(' ');
-    res.write('Url scheme: http://epilol.dreamleaves.org/PERSO%1CTOP_TEXT%1CBOT_TEXT');
-    res.write(' ');
-    res.write('Written in node.js. Deal with it.');
-    res.end('');
+    res.writeHead(200, {'Content-Type': 'text/html'});
+    res.write('<h1>epiLOL macro generator!</h1>');
+    res.write('<hr />');
+    res.write('Url scheme: http://epilol.dreamleaves.org/PERSO%1CTOP_TEXT%1CBOT_TEXT.png<br />');
+    res.write('<br />');
+    res.write('<p style="font-size: 40%;">Written in node.js. Deal with it.<br />');
+    res.write('Node.js > Nginx > Apache > Wordpress > Fred Christian</p>');
+    res.end();
 }
 
 function displayStats(res) {
