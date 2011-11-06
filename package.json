@@ -1,7 +1,7 @@
 {
-	"name": "node-example",
-	"version": "0.0.1",
+	"name": "epilol",
+	"version": "0.1",
 	"dependencies": {
-			"express": "2.2.0"
+			"node-gd": "0"
 			}
 }
