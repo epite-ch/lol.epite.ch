@@ -42,6 +42,25 @@ function display404(res, path) {
     res.write('Just go back to the <a href="/">index</a>, bro!<br />');
 }
 
+function renderPicture(res, face, top, bot) {
+    var img = require('./imagemagick')
+    var pic = data[face]['t_pic'];
+
+    img.convert([pic, '-resize', '1000x1000', 'png:-'],
+		function(err, stdout, stderr) {
+		    res.writeHead(200, {'Content-Type': 'image/png'});
+		    res.write(stdout);
+		}
+    /*
+    res.writeHead(200, {'Content-Type': 'text/html'});
+    res.write('<h2>Picture!</h2>');
+    res.write('<strong>Face:</strong> '+face+'<br />');
+    res.write('<strong>TOP:</strong> '+text_top+'<br />');
+    res.write('<strong>BOT:</strong> '+text_bot+'<br />');
+    res.write('<img src="/'+ data[face]['t_pic'] + '" />');
+    */
+}
+
 function displayPicture(res, path) {
     var face;
     var text_pic, text_top, text_bot;
@@ -54,20 +73,14 @@ function displayPicture(res, path) {
 	face = ((data[t]) ? t : 'kwame');
 	text.shift();
     }
-    if (text.length == 2)
+    if ((text.length == 2) || (text.length == 0))
     {
-	text_top = unescape(text[0]);
-	text_bot = unescape(text[1]);
+	text_top = ((text[0]) ? unescape(text[0]) : data[face]['t_top']);
+	text_bot = ((text[1]) ? unescape(text[1]) : data[face]['t_bot']);
+	renderPicture(res, face, text_top.toUpperCase, text_bot.toUpperCase);
     } else {
-	text_top = data[face]['t_top'];
-	text_top = data[face]['t_bot'];
+	display404(res, path);
     }
-    res.writeHead(200, {'Content-Type': 'text/html'});
-    res.write('<h2>Picture!</h2>');
-    res.write('<strong>Face:</strong> '+face+'<br />');
-    res.write('<strong>TOP:</strong> '+text_top+'<br />');
-    res.write('<strong>BOT:</strong> '+text_bot+'<br />');
-    res.write('<img src="/'+ data[face]['t_pic'] + '" />');
 }
 
 function itsPicture(path) {
