@@ -50,6 +50,8 @@ function renderPicture(res, face, top, bot) {
 		function(err, stdout, stderr) {
 		    res.writeHead(200, {'Content-Type': 'image/png'});
 		    res.write(stdout);
+		    console.log('CALL_' + pic);
+		    console.log(err);
 		});
     /*
       res.writeHead(200, {'Content-Type': 'text/html'});
