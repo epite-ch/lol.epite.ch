@@ -2,14 +2,15 @@ var http = require('http');
 var url = require('url');
 
 function displayIndex(res) {
-  res.writeHead(200, {'Content-Type': 'text/plain'});
-  res.write('Node.js > Nginx > Apache > Wordpress > Fred Christian\n');
+    res.writeHead(200, {'Content-Type': 'text/plain'});
+    res.write('Node.js > Nginx > Apache > Wordpress > Fred Christian\n')
 }
 
 function displayStats(res) {
   res.writeHead(200, {'Content-Type': 'text/plain'});
   res.write('Stats!');
 }
+
 function display404(res, path) {
   res.writeHead(404, {'Content-Type': 'text/html'});
   res.write('<h1>404! This shit is hosted on the intranet, bitch!</h1>');
@@ -24,7 +25,7 @@ function displayPicture(res, path) {
   var text_top = '';
   var text_bot = '';
   var text;
-  
+
   text = path.substring(1, path.length-4).split('%1C');
   if ((text.length == 3) || (text.length == 1))
   {
