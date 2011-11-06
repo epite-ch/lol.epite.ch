@@ -25,8 +25,9 @@ var data = {
 
 function displayIndex(res) {
     res.writeHead(200, {'Content-Type': 'text/html'});
-    res.write('<h1>epiLOL macro generator!</h1>');
+    res.write('<h1>epiLOL macro generator!<span style="font-size:90%;"> by <a href="http://twitter.com/JoshLeaves">JoshLeaves</a></h1>');
     res.write('<hr />');
+    res.write('<br />');
     res.write('Url scheme:<br / >');
     res.write('- /{face}.png<br />');
     res.write('- /{face}%1C{text_top}%1C{text_bot}.png<br />');
