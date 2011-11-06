@@ -91,7 +91,7 @@ function itsPicture(path) {
 }
 
 http.createServer(function (req, res) {
-    var pathname = escape(req.url);
+    var pathname = url.parse(req.url).pathname;
     if (pathname == '/') { displayIndex(res); }
     else if (pathname == '/stats/') { displayStats(res); }
     else if (itsPicture(pathname)) { displayPicture(res, pathname); }
