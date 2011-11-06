@@ -50,7 +50,10 @@ function renderPicture(res, face, top, bot) {
     var pic = data[face]['t_pic'];
     console.log('CALL_' + pic);
 
-    img.convert([pic, '-font', 'Impact.ttf', '-pointSize', '42', '-gravity', 'center', '-draw', "text 250,50 '"+top +"'", '-draw', "text 250,450 '"+bot+"'", 'PNG:-'],
+    img.convert([pic, '-font', 'Impact.ttf', '-pointSize', '42', '-fill', 'white', '-stroke', 'black', '-strokewidth', '3',
+		 '-gravity', 'north', '"label:'+top+'"',
+		 '-gravity', 'south', '"label:'+bot+'"',
+		 'PNG:-'],
 		function(err, stdout, stderr) {
 		    console.log('DONE_' + pic);
 		    res.writeHead(200, {'Content-Type': 'image/png', 'Content-Length': stdout.length});
