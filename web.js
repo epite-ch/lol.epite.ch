@@ -52,7 +52,6 @@ function renderPicture(res, face, top, bot) {
 		    res.write(stdout);
 		    console.log('CALL_' + pic);
 		    console.log('ERROR:' + err);
-		    console.log('STDOUT:' + stdout);
 		});
     /*
       res.writeHead(200, {'Content-Type': 'text/html'});
