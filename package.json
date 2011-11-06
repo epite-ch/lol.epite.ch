@@ -1,7 +1,7 @@
-{
+	{
 	"name": "epilol",
 	"version": "0.8.4",
 	"dependencies": {
-			"gd": "0.1.0"
+			"imagemagick": "0.1.2"
 			}
 }
