@@ -81,11 +81,11 @@ function renderPicture(res, face, top, bot) {
 }
 
 function displayPicture(res, path) {
-    var face;
+    var face = 'kwame';
     var text_pic, text_top, text_bot;
     var text;
 
-    text = path.substring(1, path.length-4).split('%1C');
+    text = path.substring(1, path.length-4).split(new RegExp('%1C', 'i'));
     if ((text.length == 3) || (text.length == 1))
     {
 	var t = text[0];
