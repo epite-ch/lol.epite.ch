@@ -50,14 +50,14 @@ function renderPicture(res, face, top, bot) {
 		function(err, stdout, stderr) {
 		    res.writeHead(200, {'Content-Type': 'image/png'});
 		    res.write(stdout);
-		}
+		});
     /*
-    res.writeHead(200, {'Content-Type': 'text/html'});
-    res.write('<h2>Picture!</h2>');
-    res.write('<strong>Face:</strong> '+face+'<br />');
-    res.write('<strong>TOP:</strong> '+text_top+'<br />');
-    res.write('<strong>BOT:</strong> '+text_bot+'<br />');
-    res.write('<img src="/'+ data[face]['t_pic'] + '" />');
+      res.writeHead(200, {'Content-Type': 'text/html'});
+      res.write('<h2>Picture!</h2>');
+      res.write('<strong>Face:</strong> '+face+'<br />');
+      res.write('<strong>TOP:</strong> '+text_top+'<br />');
+      res.write('<strong>BOT:</strong> '+text_bot+'<br />');
+      res.write('<img src="/'+ data[face]['t_pic'] + '" />');
     */
 }
 
