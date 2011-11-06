@@ -26,11 +26,11 @@ var data = {
 function displayIndex(res) {
     res.writeHead(200, {'Content-Type': 'text/plain'});
     res.write('Node.js > Nginx > Apache > Wordpress > Fred Christian\n');
-    res.write();
+    res.write(' ');
     res.write('Url scheme: http://epilol.dreamleaves.org/PERSO%1CTOP_TEXT%1CBOT_TEXT');
-    res.write();
+    res.write(' ');
     res.write('Written in node.js. Deal with it.');
-    res.end();
+    res.end('');
 }
 
 function displayStats(res) {
