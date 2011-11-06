@@ -25,12 +25,14 @@ var data = {
 
 function displayIndex(res) {
     res.writeHead(200, {'Content-Type': 'text/plain'});
-    res.write('Node.js > Nginx > Apache > Wordpress > Fred Christian\n')
+    res.write('Node.js > Nginx > Apache > Wordpress > Fred Christian\n');
+    res.end();
 }
 
 function displayStats(res) {
     res.writeHead(200, {'Content-Type': 'text/plain'});
     res.write('Stats!');
+    res.end();
 }
 
 function display404(res, path) {
@@ -40,6 +42,7 @@ function display404(res, path) {
     res.write("Seriously dude, I don't have <strong>http://epilol.dreamleaves.org"+path+"</strong> here.<br />");
     res.write('<br />');
     res.write('Just go back to the <a href="/">index</a>, bro!<br />');
+    res.end();
 }
 
 function renderPicture(res, face, top, bot) {
@@ -50,9 +53,9 @@ function renderPicture(res, face, top, bot) {
     img.convert([pic, '-font', 'Impact.ttf', '-pointSize', '42', '-gravity', 'center', '-draw', "text 250,50 '"+top +"'", '-draw', "text 250,450 '"+bot+"'", 'PNG:-'],
 		function(err, stdout, stderr) {
 		    console.log('DONE_' + pic);
-		    res.writeHead(200, {'Content-Type': 'image/png'});
-		    res.write(stdout);
-		    console.log('WRITTEN!');
+		    res.writeHead(200, {'Content-Type': 'image/png', 'Content-Length': stdout.length});
+		    res.end(stdout, 'binary');
+		    console.log('WRITTEN!' + stdout.length);
 		    console.log('ERROR:' + err);
 		    console.log('STDERR:' + stderr);
 		});
@@ -90,5 +93,4 @@ http.createServer(function (req, res) {
     else if (pathname == '/stats/') { displayStats(res); }
     else if (itsPicture(pathname)) { displayPicture(res, pathname); }
     else { display404(res, pathname); }
-    res.end();
 }).listen(process.env.PORT || 3000);
