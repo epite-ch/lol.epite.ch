@@ -87,7 +87,7 @@ function displayPicture(res, path) {
 }
 
 function itsPicture(path) {
-    return (path.match(/^\/[a-z\%0-9\_\-\!\?\x1C]+\.png$/i));
+    return (path.match(/^\/[a-z\.\%0-9\_\-\!\?]+\.png$/i));
 }
 
 http.createServer(function (req, res) {
