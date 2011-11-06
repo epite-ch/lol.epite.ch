@@ -87,7 +87,7 @@ function displayPicture(res, path) {
     var text_pic, text_top, text_bot;
     var text;
 
-    text = path.substring(1, path.length-4).replace(new RegExp('%5CN', 'i'), '\n').split(new RegExp('%1C', 'i'));
+    text = path.substring(1, path.length-4).replace(new RegExp('%5CN', 'gi'), '\n').split(new RegExp('%1C', 'i'));
     if (((text.length == 3) || (text.length == 1)) && (data[text[0]]))
     {
 	face = text[0];
