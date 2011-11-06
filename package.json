@@ -1,7 +1,7 @@
 {
 	"name": "epilol",
-	"version": "0.1",
+	"version": "0.8.4",
 	"dependencies": {
-			"node-gd": "0"
+			"node-gd": "0.0.0"
 			}
 }
