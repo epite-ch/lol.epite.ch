@@ -55,4 +55,4 @@ http.createServer(function (req, res) {
   else if (itsPicture(pathname)) { displayPicture(res, pathname); }
   else { display404(res, pathname); }
   res.end();
-}).listen();
+}).listen(process.env.PORT || 3000);
