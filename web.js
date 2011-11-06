@@ -65,6 +65,7 @@ function renderPicture(res, face, top, bot) {
     var img = require('imagemagick')
     var pic = data[face]['t_pic'];
 
+    console.log('FAKENAME_GET_' + top +'_'+ bot);
     console.log('CALL_' + pic);
 
     img.convert([pic, '-font', './Impact.ttf', '-pointSize', '42', '-fill', 'white', '-stroke', 'black', '-strokewidth', '2',
@@ -93,6 +94,7 @@ function displayPicture(res, path) {
 	text.shift();
 	text_top = ((text[0]) ? unescape(text[0]) : data[face]['t_top']);
 	text_bot = ((text[1]) ? unescape(text[1]) : data[face]['t_bot']);
+	console.log('FAKENAME_GET_' + text_top +'_'+ text_bot);
 	renderPicture(res, face, text_top.toUpperCase(), text_bot.toUpperCase());
     } else {
 	display404(res, path);
@@ -105,6 +107,7 @@ function itsPicture(path) {
 
 http.createServer(function (req, res) {
     var pathname = url.parse(req.url).pathname;
+    console.log('PATHNAME_GET_' + pathname);
     if (pathname == '/') { displayIndex(res); }
     else if (pathname == '/stats/') { displayStats(res); }
     else if (itsPicture(pathname)) { displayPicture(res, pathname); }
