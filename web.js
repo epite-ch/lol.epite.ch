@@ -46,12 +46,13 @@ function renderPicture(res, face, top, bot) {
     var img = require('imagemagick')
     var pic = data[face]['t_pic'];
 
-    img.convert([pic, '-resize', '1000x1000', 'png:-'],
+    img.convert([pic, '-resize', '1000x1000', 'PNG:-'],
 		function(err, stdout, stderr) {
 		    res.writeHead(200, {'Content-Type': 'image/png'});
 		    res.write(stdout);
 		    console.log('CALL_' + pic);
-		    console.log(err);
+		    console.log('ERROR:' + err);
+		    console.log('STDOUT:' + stdout);
 		});
     /*
       res.writeHead(200, {'Content-Type': 'text/html'});
