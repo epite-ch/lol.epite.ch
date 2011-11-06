@@ -55,7 +55,7 @@ function display404(res, path) {
     res.writeHead(404, {'Content-Type': 'text/html'});
     res.write('<h1>404! This shit is hosted on the intranet, bitch!</h1>');
     res.write('<hr />');
-    res.write("Seriously dude, I don't have <strong>http://epilol.dreamleaves.org"+path+"</strong> here.<br />");
+    res.write("Seriously dude, I don't have <strong>"+path+"</strong> here.<br />");
     res.write('<br />');
     res.write('Just go back to the <a href="/">index</a>, bro!<br />');
     res.end();
