@@ -45,26 +45,17 @@ function display404(res, path) {
 function renderPicture(res, face, top, bot) {
     var img = require('imagemagick')
     var pic = data[face]['t_pic'];
+    console.log('CALL_' + pic);
 
-    img.convert([pic, '-font', 'Impact.ttf', '-pointSize', '42', '-gravity', 'center',
-		 '-draw', 'text 250 50 "' + top +'"',
-		 '-draw', 'text 250 450 "' + bot+'"',
-		 'PNG:-'],
+    img.convert([pic, '-font', 'Impact.ttf', '-pointSize', '42', '-gravity', 'center', '-draw', "text 250,50 '"+top +"'", '-draw', "text 250,450 '"+bot+"'", 'PNG:-'],
 		function(err, stdout, stderr) {
+		    console.log('DONE_' + pic);
 		    res.writeHead(200, {'Content-Type': 'image/png'});
 		    res.write(stdout);
-		    console.log('CALL_' + pic);
+		    console.log('WRITTEN!');
 		    console.log('ERROR:' + err);
 		    console.log('STDERR:' + stderr);
 		});
-    /*
-      res.writeHead(200, {'Content-Type': 'text/html'});
-      res.write('<h2>Picture!</h2>');
-      res.write('<strong>Face:</strong> '+face+'<br />');
-      res.write('<strong>TOP:</strong> '+text_top+'<br />');
-      res.write('<strong>BOT:</strong> '+text_bot+'<br />');
-      res.write('<img src="/'+ data[face]['t_pic'] + '" />');
-    */
 }
 
 function displayPicture(res, path) {
