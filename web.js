@@ -31,6 +31,7 @@ function displayIndex(res) {
     res.write('Url scheme:<br / >');
     res.write('- /{face}.png<br />');
     res.write('- /{face}%1C{text_top}%1C{text_bot}.png<br />');
+    res.write('Rappel: ? = %3F<br />');
     res.write('<br />');
     res.write('Url scheme (for promo 2016):<br />');
     res.write('- /kwame.png<br />');
