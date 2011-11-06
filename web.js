@@ -35,7 +35,7 @@ function displayIndex(res) {
     res.write('<br />');
     res.write('Url scheme (for promo 2016):<br />');
     res.write('- /kwame.png<br />');
-    res.write('- /roxan%1Cfoo%1Cbar.png<br />');
+    res.write('- /roxan%1Cfoo%20bar%20%3F%1CCa%20donne%20soif%20dis%20donc%20!.png<br />');
     res.write('- /sadirac%1Ccinq%20ans%20pour%1Cdevenir%20un%20robot%20reconnu.png<br />');
     res.write('- /shawan%1Cmiaou%1Cje%20suis%20un%20chat.png<br />');
     res.write('- /pintade.png<br />');
