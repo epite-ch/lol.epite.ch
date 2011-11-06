@@ -86,14 +86,10 @@ function displayPicture(res, path) {
     var text;
 
     text = path.substring(1, path.length-4).split(new RegExp('%1C', 'i'));
-    if ((text.length == 3) || (text.length == 1))
+    if (((text.length == 3) || (text.length == 1)) && (data[text[0]]))
     {
-	var t = text[0];
-	face = ((data[t]) ? t : 'kwame');
+	face = data[text[0]];
 	text.shift();
-    }
-    if ((text.length == 2) || (text.length == 0))
-    {
 	text_top = ((text[0]) ? unescape(text[0]) : data[face]['t_top']);
 	text_bot = ((text[1]) ? unescape(text[1]) : data[face]['t_bot']);
 	renderPicture(res, face, text_top.toUpperCase(), text_bot.toUpperCase());
