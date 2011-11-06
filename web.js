@@ -51,8 +51,8 @@ function renderPicture(res, face, top, bot) {
     console.log('CALL_' + pic);
 
     img.convert([pic, '-font', 'Impact.ttf', '-pointSize', '42', '-fill', 'white', '-stroke', 'black', '-strokewidth', '3',
-		 '-gravity', 'north', '-annotate', '0', '"'+top+'"',
-		 '-gravity', 'south', '-annotate', '0', '"'+bot+'"',
+		 '-gravity', 'north', '-annotate', '0', top,
+		 '-gravity', 'south', '-annotate', '0', bot,
 		 'PNG:-'],
 		function(err, stdout, stderr) {
 		    console.log('DONE_' + pic);
