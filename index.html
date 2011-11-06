@@ -1,0 +1,260 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>kwame macro generator</title>
+    <meta name="description" content="kwame macro generator epitech">
+    <meta name="author" content="JoshLeaves">
+    <meta name="keywords" content"kwame epitech macro generator joshleaves">
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!-- Le styles -->
+    <link rel="stylesheet" href="http://twitter.github.com/bootstrap/1.3.0/bootstrap.min.css">
+    <style type="text/css">
+      html, body { background-color: #eee; }
+      body { padding-top: 40px; }
+      .container > footer p { text-align: center; }
+      .container { width: 820px; }
+      .content {
+        background-color: #fff; padding: 20px; margin: 0 -20px;
+        -webkit-border-radius: 0 0 6px 6px; -moz-border-radius: 0 0 6px 6px; border-radius: 0 0 6px 6px;
+        -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.15); -moz-box-shadow: 0 1px 2px rgba(0,0,0,.15); box-shadow: 0 1px 2px rgba(0,0,0,.15);
+      }
+      .page-header { background-color: #f5f5f5; padding: 20px 20px 10px; margin: -20px -20px 20px; }
+      .content .span9, .content .span5 { min-height: 500px; }
+      .content .span5 { margin-left: 0; padding-left: 19px; border-left: 1px solid #eee; }
+      .topbar .btn { border: 0; }
+      #the-one-image { position: relative; margin-top: -500px; }
+      form .input { margin-left: 0px; width: 261px; }
+      #butt { width: 271px; overflow: hidden; }
+      #new_nam { width: 271px; }
+    </style>
+    <!-- Le fav and touch icons -->
+    <link rel="shortcut icon" href="images/favicon.ico">
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-23566875-5']);
+      _gaq.push(['_trackPageview']);
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+      </script>
+    <script type="text/javascript" src="base64.js"></script>
+    <script type="text/javascript" src="canvas2image.js"></script>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.6.4.min.js"></script>
+    <script>
+      var d = new Object();
+      d.kwame = new Object();
+      d.kwame.text_ind = 0;
+      d.kwame.text_pic = "kwamescigar.jpg";
+      d.kwame.text_top = "Intra Down ?";
+      d.kwame.text_bot = "Deal with it";
+      d.roxan = new Object();
+      d.roxan.text_ind = 1;
+      d.roxan.text_pic = "roxanclasse.jpg";
+      d.roxan.text_top = "Mes deux passions?";
+      d.roxan.text_bot = "La mode et la pédagogie.";
+      d.sadirac = new Object();
+      d.sadirac.text_ind = 2
+      d.sadirac.text_pic = "sadiracrobot.jpg"
+      d.sadirac.text_top = "J'ai fait une prépa";
+      d.sadirac.text_bot = "Je sortais tous les soirs";
+      d.shawan = new Object();
+      d.shawan.text_ind = 3;
+      d.shawan.text_pic = "shawanboss.jpg";
+      d.shawan.text_top = "I can haz";
+      d.shawan.text_bot = "Shizburger?";
+      d.pintade = new Object();
+      d.pintade.text_ind = 4;
+      d.pintade.text_pic = "pintadelulz.jpg";
+      d.pintade.text_top = "Volaille d'ornement";
+      d.pintade.text_bot = "Appréciée pour sa chair";
+      
+      var text_nam, text_pic, text_top, text_bot;
+      var new_top, new_bot, new_nam;
+      var canvas;
+      var context;
+      var divImg;
+      var image;
+      var link;
+      var butt;
+      var hash;
+
+      function drawText(text_in, x, y)
+      {
+        var text = text_in.toUpperCase();
+        context.fillStyle = "#fff";
+        context.font = "Bold 28px Verdana";
+        context.textAlign = "center";
+        context.textBaseline = "middle"
+        context.shadowBlur = 0.01;
+        context.shadowColor = "rgba(0,0,0,255)";
+        context.textAlign = "center";
+        context.textBaseline = "middle"
+        context.shadowOffsetX = 0; context.shadowOffsetY = 3; context.fillText(text, x, y);
+        context.shadowOffsetX = 0; context.shadowOffsetY = -3; context.fillText(text, x, y);
+        context.shadowOffsetX = 3; context.shadowOffsetY = 0; context.fillText(text, x, y);
+        context.shadowOffsetX = 3; context.shadowOffsetY = 3; context.fillText(text, x, y);
+        context.shadowOffsetX = 3; context.shadowOffsetY = -3; context.fillText(text, x, y);
+        context.shadowOffsetX = -3; context.shadowOffsetY = 0; context.fillText(text, x, y);
+        context.shadowOffsetX = -3; context.shadowOffsetY = 3; context.fillText(text, x, y);
+        context.shadowOffsetX = -3; context.shadowOffsetY = -3; context.fillText(text, x, y);
+      }
+
+      function make_link() {
+        var add_name = ((text_nam == "kwame") ? "" : text_nam);
+        var add_topbot = (((text_top == d[text_nam]['text_top']) && (text_bot == d[text_nam]['text_bot'])) ? "" : escape(text_top) + "%1C" + escape(text_bot));
+        var full = "";
+        if ((add_name != "") || (add_topbot != "")) { full = full + "#"; }
+        if (add_name != "") { full = full + add_name; }
+        if (add_topbot == "") { return (full); }
+        if (add_name != "") { full = full + "%1C"; }
+        full = full + add_topbot;
+        return (full);
+      }
+
+      function do_everything() {
+        butt.innerHTML = "make clean && make re || make " + text_nam;
+        $.ajax({
+          type: "POST",
+          url: "lulz.php",
+          data: "face=" + text_nam + "&text_top=" + text_top + "&text_bot=" + text_bot,
+        });
+        var imageObj = new Image();
+        imageObj.src = text_pic;
+        imageObj.onload = function(){
+          context.drawImage(imageObj, 0, 0);
+          drawText(text_top, 250, 30);
+          drawText(text_bot, 250, 470)
+          image = Canvas2Image.saveAsPNG(document.getElementById("kwame-vas"), true);
+          divImg.removeChild(document.getElementById("that-one-img"));
+          image.id = "that-one-img";
+          divImg.appendChild(image);
+          var linkadd = make_link();       
+          link.href = "http://dreamleaves.org/kwame/" + linkadd;
+          window.location.hash = ((linkadd != "") ? linkadd : "");
+        };
+
+      }
+
+      window.onload = function(){
+        canvas = document.getElementById("kwame-vas");
+        divImg = document.getElementById("the-one-image");
+        new_nam = document.getElementById("new_nam");
+        new_top = document.getElementById("new_top");
+        new_bot = document.getElementById("new_bot");
+        link = document.getElementById("i-am-a-link");
+        butt = document.getElementById("butt");
+        context = canvas.getContext("2d"); 
+
+        hash = window.location.hash;
+        hash = hash.substring(1)
+        hash = hash.split("%1C");
+        text_nam = 'kwame';
+        if ((hash.length == 3) || (hash.length == 1))
+        {
+          text_nam = ((d[hash[0]]) ? hash[0] : 'kwame');
+          hash.shift();
+        }
+        new_nam.selectedIndex = d[text_nam]['text_ind'];
+        text_pic = d[text_nam]['text_pic'];
+        text_top = d[text_nam]['text_top'];
+        text_bot = d[text_nam]['text_bot'];
+        new_top.placeholder = d[text_nam]['text_top'];
+        new_bot.placeholder = d[text_nam]['text_bot'];
+        if (hash.length == 2)
+        {
+          hash[0] = unescape(hash[0]);
+          hash[1] = unescape(hash[1]);
+          new_top.value = hash[0];
+          text_top = hash[0]; 
+          new_bot.value = hash[1]; 
+          text_bot = hash[1];
+        }
+        do_everything();
+      };
+
+      function make_re() {
+        text_nam = new_nam.options[new_nam.selectedIndex].value;
+        text_pic = new_nam.options[new_nam.selectedIndex].text;
+        new_top.placeholder = d[text_nam]['text_top'];
+        new_bot.placeholder = d[text_nam]['text_bot'];
+        text_top = ((new_top.value == "") ? d[text_nam]['text_top'] : new_top.value);
+        text_bot = ((new_bot.value == "") ? d[text_nam]['text_bot'] : new_bot.value);
+        do_everything();
+      }
+    </script>
+  </head>
+
+  <body>
+    <div class="topbar">
+      <div class="fill">
+        <div class="container">
+          <span class="brand">kwame macro generator</span>
+          <ul class="nav">
+            <li class="active"><a href="/kwame/"><strong>Home</strong></a></li>
+            <li><a href="http://intra.epitech.eu/"><strong>gb2/intra</strong></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+
+      <div class="content">
+        <div class="page-header">
+          <h1>kwame macro generator <small>"Intra down? Deal with it."</small></h1>
+        </div>
+        <div class="row">
+          <div class="span9">
+            <h2>Toi aussi trouve réponse à tes problèmes!</h2>
+            <canvas width="500" height="500" id="kwame-vas"></canvas>
+            <div id="the-one-image"><img id="that-one-img" src="kwamescigar.jpg"></img></div>
+          </div>
+          <div class="span5">
+            <h3>Fais-moi parler!</h3>
+              <form action="javascript:make_re();">
+                <select name="normalSelect" id="new_nam">
+                  <option value="kwame">kwamescigar.jpg</option>
+                  <option value="roxan">roxanclasse.jpg</option>
+                  <option value="sadirac">sadiracrobot.jpg</option>
+                  <option value="shawan">shawanboss.jpg</option>
+                  <option value="pintade">pintadelulz.jpg</option>
+                </select>
+                <input id="new_top" class="input" type="text" placeholder="Intra down ?">
+                <input id="new_bot" class="input" type="text" placeholder="Deal with it">
+                <button id="butt" class="btn primary" type="submit">make clean && make re || make kwame</button>
+                <br />
+              </form>
+            <h3>Montre-moi à ta maman!</h3>
+              Lien: <a id="i-am-a-link">Copie-colle-moi sur .délation!</a>
+            <h3>Au fait...</h3>
+              Tout ceci n'est (bien évidemment) qu'une gentille pique/blague, originant de ce cher <a href="http://twitter.com/Arcanis/">Arcanis</a> qui a un jour <a href="http://images.memegenerator.net/instances/400x/10327857.jpg">généré une certaine image</a>. J'ai réalisé qu'en tant que tek, je me DEVAIS d'explorer les nouvelles technologies pour fournir à tous la possibilité d'exploiter ce qui mérite d'être un <a href="http://knowyourmeme.com/">même</a> Epitech-ien.<br />
+              <br />
+              Donc ouais, exit la libGD du PHP, ici, tout est client-side.<br />
+              <br />
+              Norage sur PHP bros. #Brogramming<br />
+              <br />
+              Accessoirement, j'ai codé ça à l'arrache en deux heures, donc y a sûrement des bugs (ou bien le code est crasseux et pas à la norme mais ça osef) donc envoyez-moi un mail/tweet en cas.<br />
+              <br />
+              Ciao bitches.
+          </div>
+        </div>
+      </div>
+      <footer>
+        <p><a href="twitter.github.com/bootstrap/">Bootstrap</a> &copy; <a href="http://twitter.com">Twitter</a> - Canvas2Image &copy; <a href="http://www.nihilogic.dk/labs/canvas2image/">Jacob Seidelin</a> 2008-2011 - <a href="Impact.ttf">Font Impact</a> &copy; <a href="http://en.wikipedia.org/wiki/Impact_(typeface)">Geoffrey Lee</a> - Font Georgia &copy; <a href="http://en.wikipedia.org/wiki/Verdana">Matthew Carter</a></p>
+        <p>PhotoS &copy; their respective owners 2011 - Coding &copy; <a href="http://twitter.com/JoshLeaves">JoshLeaves</a> 2011 - Idées à la con &copy; <a href="http://twitter.com/Arcanis">Arcanis</a> & <a href="http://twitter.com/Intrepidd">Intrepidd</a></p>
+      </footer>
+
+    </div> <!-- /container -->
+
+  </body>
+</html>
