@@ -47,8 +47,8 @@ function renderPicture(res, face, top, bot) {
     var pic = data[face]['t_pic'];
 
     img.convert([pic, '-font', 'Impact.ttf', '-pointSize', '42', '-gravity', 'center',
-		 '-draw', 'text 250 50' + top,
-		 '-draw', 'text 250 450' + bot,
+		 '-draw', 'text 250 50 "' + top +'"',
+		 '-draw', 'text 250 450 "' + bot+'"',
 		 'PNG:-'],
 		function(err, stdout, stderr) {
 		    res.writeHead(200, {'Content-Type': 'image/png'});
