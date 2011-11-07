@@ -69,7 +69,8 @@ function logPicture(face, top, bot) {
 	path: '/kwame/lulz.php?techno=nodejs&face='+face+'&text_top='+top+'&text_bot='+bot,
 	method: 'POST'
     }
-    var req = http.request(options, function (res) { console.log('REPONSE_' + res); });
+    console.log('HTTP_POST');
+    var req = http.request(options, function (res) { console.log('HTTP_RESP_' + res); });
 }
 
 function renderPicture(res, face, top, bot) {
