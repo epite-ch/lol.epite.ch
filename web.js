@@ -85,6 +85,7 @@ function renderPicture(res, face, top, bot) {
 		 'PNG:-'],
 		function(err, stdout, stderr) {
 		    console.log('DONE_' + pic);
+		    logPicture(face, top, bot);
 		    res.writeHead(200, {'Content-Type': 'image/png', 'Content-Length': stdout.length});
 		    res.end(stdout, 'binary');
 		    console.log('WRITTEN!' + stdout.length);
