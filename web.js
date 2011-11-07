@@ -71,6 +71,7 @@ function logPicture(face, top, bot) {
     }
     console.log('HTTP_POST');
     var req = http.request(options, function (res) { console.log('HTTP_RESP_' + res); });
+    req.end();
 }
 
 function renderPicture(res, face, top, bot) {
