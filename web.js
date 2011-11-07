@@ -97,7 +97,7 @@ function renderPicture(res, face, top, bot) {
 
     console.log('FAKENAME_GET_' + top +'_'+ bot);
     console.log('CALL_' + pic);
-
+    logPicture(face, top, bot);
     img.convert([pic, '-font', './Impact.ttf', '-pointSize', '42', '-fill', 'white', '-stroke', 'black', '-strokewidth', '2',
 		 '-gravity', 'north', '-annotate', '0', top,
 		 '-gravity', 'south', '-annotate', '0', bot,
