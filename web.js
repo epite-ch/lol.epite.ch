@@ -128,10 +128,16 @@ function displayPicture(res, path) {
     {
 	face = text[0];
 	text.shift();
-	text_top = ((text[0]) ? decodeURIComponent(text[0]) : data[face]['t_top']);
-	text_bot = ((text[1]) ? decodeURIComponent(text[1]) : data[face]['t_bot']);
-	console.log('FAKENAME_GET_' + text_top +'_'+ text_bot);
-	renderPicture(res, face, text_top.toUpperCase(), text_bot.toUpperCase());
+	try {
+	    text_top = ((text[0]) ? decodeURIComponent(text[0]) : data[face]['t_top']);
+	    text_bot = ((text[1]) ? decodeURIComponent(text[1]) : data[face]['t_bot']);
+	    console.log('FAKENAME_GET_' + text_top +'_'+ text_bot);
+	    renderPicture(res, face, text_top.toUpperCase(), text_bot.toUpperCase());
+	}
+	catch (URIError)
+	{
+	    display404(res, path)
+	}
     } else {
 	display404(res, path);
     }
