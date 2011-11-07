@@ -97,19 +97,20 @@ function renderPicture(res, face, top, bot) {
 
     console.log('FAKENAME_GET_' + top +'_'+ bot);
     console.log('CALL_' + pic);
-    logPicture(face, top, bot);
     img.convert([pic, '-font', './Impact.ttf', '-pointSize', '42', '-fill', 'white', '-stroke', 'black', '-strokewidth', '2',
 		 '-gravity', 'north', '-annotate', '0', top,
 		 '-gravity', 'south', '-annotate', '0', bot,
 		 'PNG:-'],
 		function(err, stdout, stderr) {
 		    console.log('DONE_' + pic);
-		    /*logPicture(face, top, bot); */
 		    res.writeHead(200, {'Content-Type': 'image/png', 'Content-Length': stdout.length});
 		    res.end(stdout, 'binary');
 		    console.log('WRITTEN!' + stdout.length);
 		    console.log('ERROR:' + err);
 		    console.log('STDERR:' + stderr);
+		    console.log('LOGGING_ON');
+		    logPicture(face, top, bot);
+		    console.log('LOGGING_DONE');
 		});
 }
 
