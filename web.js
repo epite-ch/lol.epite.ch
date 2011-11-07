@@ -64,7 +64,7 @@ function display404(res, path) {
 
 function logPicture(face, top, bot) {
     var options = {
-	host: 'http://dreamleaves.org/',
+	host: 'dreamleaves.org',
 	port: 80,
 	path: '/kwame/lulz.php?techno=nodejs&face='+face+'&text_top='+top+'&text_bot='+bot,
 	method: 'POST'
