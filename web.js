@@ -73,14 +73,14 @@ function logPicture(face, top, bot) {
     var options = {
 	host: 'dreamleaves.org',
 	port: 80,
-	path: '/kwame/lulz.php?techno=nodejs&face='+face+'&text_top='+top+'&text_bot='+bot,
+	path: '/kwame/lulz.php',
 	method: 'POST',
 	headers: {
 	    'Content-Type': 'application/x-www-form-urlencoded',
 	    'Content-Length': post_data.length
 	}
     }
-    console.log('HTTP_POST');
+    console.log('HTTP_POST_' + post_data.length);
     var req = http.request(options, function (res) {
 	res.setEncoding('utf8');
 	res.on('data', function (chunk) {
