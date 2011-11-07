@@ -1,5 +1,6 @@
 var http = require('http');
 var url = require('url');
+var querystring = require('querystring');
 
 var data = {
     'kwame': {
@@ -63,14 +64,30 @@ function display404(res, path) {
 }
 
 function logPicture(face, top, bot) {
+    var post_data = querystring.stringify({
+	'techno' : 'nodejs',
+	'face' : face,
+	'text_top' : top,
+	'text_bot' : bot
+    });
     var options = {
 	host: 'dreamleaves.org',
 	port: 80,
 	path: '/kwame/lulz.php?techno=nodejs&face='+face+'&text_top='+top+'&text_bot='+bot,
-	method: 'POST'
+	method: 'POST',
+	headers: {
+	    'Content-Type': 'application/x-www-form-urlencoded',
+	    'Content-Length': post_data.length
+	}
     }
     console.log('HTTP_POST');
-    var req = http.request(options, function (res) { console.log('HTTP_RESP_' + res); });
+    var req = http.request(options, function (res) {
+	res.setEncoding('utf8');
+	res.on('data', function (chunk) {
+	    console.log('HTTP_RESP_' + chunk);
+	});
+    });
+    req.write(post_data);
     req.end();
 }
 
