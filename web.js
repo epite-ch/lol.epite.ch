@@ -90,8 +90,8 @@ function logPicture(face, top, bot) {
 	    console.log('HTTP_RESPONSE_' + chunk);
 	});
     });
-    req.write(post_data);
-    req.end();
+    /*req.write(post_data);*/
+    req.end(post_data);
     console.log('HTTP_POSTED!');
 }
 
