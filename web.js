@@ -1,5 +1,6 @@
 var http = require('http');
 var url = require('url');
+
 var data = {
     'kwame': {
 	't_pic': 'kwamescigar.jpg',
@@ -59,6 +60,16 @@ function display404(res, path) {
     res.write('<br />');
     res.write('Just go back to the <a href="/">index</a>, bro!<br />');
     res.end();
+}
+
+function logPicture(face, top, bot) {
+    var options = {
+	host: 'http://dreamleaves.org/',
+	port: 80,
+	path: '/kwame/lulz.php?techno=nodejs&face='+face+'&text_top='+top+'&text_bot='+bot,
+	method: 'POST'
+    }
+    var req = http.request(options, function (res) { });
 }
 
 function renderPicture(res, face, top, bot) {
