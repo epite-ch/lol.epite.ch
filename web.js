@@ -80,15 +80,19 @@ function logPicture(face, top, bot) {
 	    'Content-Length': post_data.length
 	}
     }
+    console.log('HTTP_POSTING_'+face);
+    console.log('HTTP_POSTING_'+top);
+    console.log('HTTP_POSTING_'+bot);
     console.log('HTTP_POST_' + post_data.length);
     var req = http.request(options, function (res) {
 	res.setEncoding('utf8');
 	res.on('data', function (chunk) {
-	    console.log('HTTP_RESP_' + chunk);
+	    console.log('HTTP_RESPONSE_' + chunk);
 	});
     });
     req.write(post_data);
     req.end();
+    console.log('HTTP_POSTED!');
 }
 
 function renderPicture(res, face, top, bot) {
@@ -105,7 +109,7 @@ function renderPicture(res, face, top, bot) {
 		    console.log('DONE_' + pic);
 		    res.writeHead(200, {'Content-Type': 'image/png', 'Content-Length': stdout.length});
 		    res.end(stdout, 'binary');
-		    console.log('WRITTEN!' + stdout.length);
+		    console.log('WRITTEN! ' + stdout.length);
 		    console.log('ERROR:' + err);
 		    console.log('STDERR:' + stderr);
 		    console.log('LOGGING_ON');
