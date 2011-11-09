@@ -45,7 +45,7 @@ function displayIndex(res) {
     res.write('- /sadirac%1Ccinq%20ans%20pour%1Cdevenir%20un%20robot%20reconnu.png<br />');
     res.write('- /shawan%1Cmiaou%1Cje%20suis%20un%20chat.png<br />');
     res.write('- /pintade.png<br />');
-    res.write('- /jog%1CJ\'ai%20perdu%20mon%20oeil%1CEn%20voyant%20l\'intra%20de%20up%20!.png<br />');
+    res.write('- /jog%1CJ\'ai%20perdu%20mon%20oeil%1CEn%20voyant%20l\'intra%20up%20!.png<br />');
     res.write('<br />');
     res.write('<p style="font-size: 60%;">Written in <a href="http://nodejs.org">node.js</a>. For science! (You monster...)<br />');
     res.write('Node.js > Nginx > Apache > Wordpress > Fred Christian</p>');
