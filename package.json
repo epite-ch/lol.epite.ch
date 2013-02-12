@@ -1,7 +1,7 @@
-	{
-	"name": "epilol",
-	"version": "0.8.4",
+{
+	"name": "epilol-node",
+	"version": "1.4.2",
 	"dependencies": {
-			"imagemagick": "0.1.2"
-			}
+		"imagemagick": "0.1.2"
+	}
 }

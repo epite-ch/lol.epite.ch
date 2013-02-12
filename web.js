@@ -1,6 +1,7 @@
 var http = require('http');
 var url = require('url');
 var querystring = require('querystring');
+var img = require('imagemagick')
 
 var data = {
     'kwame': {
@@ -26,8 +27,13 @@ var data = {
     'jog' : {
 	't_pic': 'jogpirate.jpg',
 	't_top': 'Aaaaaaarrrrrr !',
-	't_bot': 'T\'ES KLAUS !' }
-}
+	't_bot': 'T\'ES KLAUS !' },
+    'cyril' : {
+	't_pic': 'cyrileicher.jpg',
+	't_top': 'Avant d\'être directeur',
+	't_bot': 'J\'étais Stephan Eicher!'
+    }
+};
 
 function displayIndex(res) {
     res.writeHead(200, {'Content-Type': 'text/html'});
@@ -46,16 +52,17 @@ function displayIndex(res) {
     res.write('- /shawan%1Cmiaou%1Cje%20suis%20un%20chat.png<br />');
     res.write('- /pintade.png<br />');
     res.write('- /jog%1CJ\'ai%20perdu%20mon%20oeil%1CEn%20voyant%20l\'intra%20up%20!.png<br />');
+    res.write('- [NEW!] /cyril%1CJ\'aimerais%1CDejeuner en paix%20!.png<br />');
     res.write('<br />');
     res.write('<p style="font-size: 60%;">Written in <a href="http://nodejs.org">node.js</a>. For science! (You monster...)<br />');
     res.write('Node.js > Nginx > Apache > Wordpress > Fred Christian</p>');
-    res.end();
+    return res.end();
 }
 
 function displayStats(res) {
     res.writeHead(200, {'Content-Type': 'text/plain'});
     res.write('Stats!');
-    res.end();
+    return res.end();
 }
 
 function display404(res, path) {
@@ -65,61 +72,29 @@ function display404(res, path) {
     res.write("Seriously dude, I don't have <strong>"+path+"</strong> here.<br />");
     res.write('<br />');
     res.write('Just go back to the <a href="/">index</a>, bro!<br />');
-    res.end();
-}
-
-function logPicture(face, top, bot) {
-    var post_data = querystring.stringify({
-	'techno' : 'nodejs',
-	'face' : face,
-	'text_top' : top,
-	'text_bot' : bot
-    });
-    var options = {
-	host: 'dreamleaves.org',
-	port: 80,
-	path: '/kwame/lulz.php',
-	method: 'POST',
-	headers: {
-	    'Content-Type': 'application/x-www-form-urlencoded',
-	    'Content-Length': post_data.length
-	}
-    }
-    console.log('HTTP_POSTING_'+face);
-    console.log('HTTP_POSTING_'+top);
-    console.log('HTTP_POSTING_'+bot);
-    console.log('HTTP_POST_' + post_data.length);
-    var req = http.request(options, function (res) {
-	res.setEncoding('utf8');
-	res.on('data', function (chunk) {
-	    console.log('HTTP_RESPONSE_' + chunk);
-	});
-    });
-    /*req.write(post_data);*/
-    req.end(post_data);
-    console.log('HTTP_POSTED!');
+    return res.end();
 }
 
 function renderPicture(res, face, top, bot) {
-    var img = require('imagemagick')
     var pic = data[face]['t_pic'];
 
-    console.log('FAKENAME_GET_' + top +'_'+ bot);
-    console.log('CALL_' + pic);
     img.convert([pic, '-font', './Impact.ttf', '-pointSize', '42', '-fill', 'white', '-stroke', 'black', '-strokewidth', '2',
 		 '-gravity', 'north', '-annotate', '0', top,
 		 '-gravity', 'south', '-annotate', '0', bot,
 		 'PNG:-'],
-		function(err, stdout, stderr) {
-		    console.log('DONE_' + pic);
+		function (err, stdout, stderr) {
+		    if (err) {
+			res.writeHead(500, {'Content-Type': 'text/html'});
+			res.write('<h1>500! It\'s not over 9000 but I failed all the way!</h1><br />');
+			res.write('<br />');
+			res.write('Best bet is the server failed. Just hit "retry" or w/ever.<br />');
+			res.write('<br />');
+			res.write('If this happens way too much, just contact me: josh DOT guthrie AT gmail DOT com<br />');
+			if (err) console.dir(err);
+			return res.end();
+		    }
 		    res.writeHead(200, {'Content-Type': 'image/png', 'Content-Length': stdout.length});
-		    res.end(stdout, 'binary');
-		    console.log('WRITTEN! ' + stdout.length);
-		    console.log('ERROR:' + err);
-		    console.log('STDERR:' + stderr);
-		    console.log('LOGGING_ON');
-		    logPicture(face, top, bot);
-		    console.log('LOGGING_DONE');
+		    return res.end(stdout, 'binary');
 		});
 }
 
@@ -129,23 +104,20 @@ function displayPicture(res, path) {
     var text;
 
     text = path.substring(1, path.length-4).replace(new RegExp('%5CN', 'gi'), '\n').split(new RegExp('%1C', 'i'));
-    if (((text.length == 3) || (text.length == 1)) && (data[text[0]]))
-    {
+    if (((text.length == 3) || (text.length == 1)) && (data[text[0]])) {
 	face = text[0];
 	text.shift();
 	try {
 	    text_top = ((text[0]) ? decodeURIComponent(text[0]) : data[face]['t_top']);
 	    text_bot = ((text[1]) ? decodeURIComponent(text[1]) : data[face]['t_bot']);
-	    console.log('FAKENAME_GET_' + text_top +'_'+ text_bot);
-	    renderPicture(res, face, text_top.toUpperCase(), text_bot.toUpperCase());
+	    return renderPicture(res, face, text_top.toUpperCase(), text_bot.toUpperCase());
 	}
 	catch (URIError)
 	{
-	    display404(res, path)
+	    return display404(res, path)
 	}
-    } else {
-	display404(res, path);
     }
+    return display404(res, path);
 }
 
 function itsPicture(path) {
@@ -154,9 +126,8 @@ function itsPicture(path) {
 
 http.createServer(function (req, res) {
     var pathname = url.parse(req.url).pathname;
-    console.log('PATHNAME_GET_' + pathname);
-    if (pathname == '/') { displayIndex(res); }
-    else if (pathname == '/stats/') { displayStats(res); }
-    else if (itsPicture(pathname)) { displayPicture(res, pathname); }
-    else { display404(res, pathname); }
+    if (pathname == '/') return displayIndex(res);
+    if (pathname == '/stats/') return displayStats(res);
+    if (itsPicture(pathname)) return displayPicture(res, pathname);
+    return display404(res, pathname);
 }).listen(process.env.PORT || 3000);
