@@ -2,6 +2,8 @@ var http        = require('http');
 var url         = require('url');
 var querystring = require('querystring');
 var imagemagick = require('imagemagick');
+var cookie      = require('cookie');
+var analytics   = require('node-ga')(process.env.EPITE_LOL_GA);
 
 var data    = require('./data.js');
 var strings = require('./strings.js');
@@ -39,28 +41,27 @@ function displayPicture (res, path) {
 			console.dir(err);
 			return routes.route500(res);
 		}
-		res.writeHead(200, {'Content-Type': 'image/png', 'Content-Length': stdout.length});
+		res.writeHead(200, {'Content-Type': 'image/png', 'Content-Length': stdout.length, 'Cookie': res.cookieGA });
 		return res.end(stdout, 'binary');
 	};
 };
 
-//The fuck is this?
-//var pictureRegex = /^\/[a-z\.\%0-9\,\;\|\>\<\_\-\!\?\[\]\(\)\\\/]+\.png$/i;
-
-
 function handleServer (req, res) {
-	var pathname = url.parse(req.url).pathname;
-	if (pathname.indexOf('/index') === 0) pathname = '/';
-	if (pathname === '/') {
-		return routes.routeIdx(res);
-	}
-	if (pathname === '/favicon.ico') {
-		return res.end('');
-	}
-	if (pictureRegex.test(pathname)) {
-		return displayPicture(res, pathname);
-	}
-	return routes.route404(res, pathname);
+	req.cookie = cookie.parse(req.headers.cookie);
+	return analytics(req, res, function () {
+		var pathname = url.parse(req.url).pathname;
+		if (pathname.indexOf('/index') === 0) pathname = '/';
+		if (pathname === '/') {
+			return routes.routeIdx(res);
+		}
+		if (pathname === '/favicon.ico') {
+			return res.end('');
+		}
+		if (pictureRegex.test(pathname)) {
+			return displayPicture(res, pathname);
+		}
+		return routes.route404(res, pathname);
+	});
 };
 
 http.createServer(handleServer).listen(process.env.PORT || 3000);

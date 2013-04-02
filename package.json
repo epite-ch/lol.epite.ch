@@ -1,7 +1,9 @@
 {
-	"name": "epilol-node",
+	"name": "lol.epite.ch",
 	"version": "1.4.2",
 	"dependencies": {
-		"imagemagick": "0.1.2"
+		"cookie": "0.0.5",
+		"imagemagick": "0.1.2",
+		"node-ga": "0.0.2"
 	}
 }
