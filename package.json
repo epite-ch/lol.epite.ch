@@ -4,6 +4,6 @@
 	"dependencies": {
 		"cookie": "0.0.5",
 		"imagemagick": "0.1.2",
-		"node-ga": "0.0.4"
+		"node-ga": "0.1.0"
 	}
 }
