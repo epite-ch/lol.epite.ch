@@ -41,13 +41,13 @@ function displayPicture (res, path) {
 			console.dir(err);
 			return routes.route500(res);
 		}
-		res.writeHead(200, {'Content-Type': 'image/png', 'Content-Length': stdout.length, 'Cookie': res.cookieGA });
+		res.writeHead(200, {'Content-Type': 'image/png', 'Content-Length': stdout.length });
 		return res.end(stdout, 'binary');
 	};
 };
 
 function handleServer (req, res) {
-	req.cookie = cookie.parse(req.headers.cookie);
+	req.cookies = (req.headers.cookie ? cookie.parse(req.headers.cookie) : null);
 	return analytics(req, res, function () {
 		var pathname = url.parse(req.url).pathname;
 		if (pathname.indexOf('/index') === 0) pathname = '/';
