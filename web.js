@@ -3,7 +3,6 @@ var url         = require('url');
 var querystring = require('querystring');
 var imagemagick = require('imagemagick');
 var cookie      = require('cookie');
-var analytics   = require('node-ga')(process.env.EPITE_LOL_GA);
 
 var data    = require('./data.js');
 var strings = require('./strings.js');
@@ -45,6 +44,23 @@ function displayPicture (res, path) {
 		return res.end(stdout, 'binary');
 	};
 };
+
+var analytics   = require('node-ga')(process.env.EPITE_LOL_GA, {
+	custom: {
+		face: function (req, res, next) {
+			var pathname = require('url').parse(req.url).pathname;
+			if (!pictureRegex.test(pathname)) {
+				return next(null, null);
+			}
+			var face = pathname.substr(0, pathname.length - 4).substr(1).split('%1C')[0];
+			console.log('Face is %s:', face);
+			return next(null, face);
+		},
+		foo: function (req, res, next) { return next(null, 'hello'); }
+	}
+});
+
+
 
 function handleServer (req, res) {
 	req.cookies = (req.headers.cookie ? cookie.parse(req.headers.cookie) : null);
