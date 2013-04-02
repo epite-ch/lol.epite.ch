@@ -53,10 +53,8 @@ var analytics   = require('node-ga')(process.env.EPITE_LOL_GA, {
 				return next(null, null);
 			}
 			var face = pathname.substr(0, pathname.length - 4).substr(1).split('%1C')[0];
-			console.log('Face is %s:', face);
 			return next(null, face);
-		},
-		foo: function (req, res, next) { return next(null, 'hello'); }
+		}
 	}
 });
 
