@@ -1,6 +1,6 @@
 {
     "name": "lol.epite.ch",
-    "version": "1.5.0",
+    "version": "2.2.0",
     "dependencies": {
         "cookie": "0.0.5",
         "imagemagick": "0.1.2",
