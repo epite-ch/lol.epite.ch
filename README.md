@@ -1,4 +1,5 @@
-lol.epite.ch
-============
+# PROJECT ARCHIVED
 
-Funny macro generator for Epitech's big heads.
+It was a fun project, (live and) let die.
+
+The project [is still online](http://epite-lol.herokuapp.com) if you want a laugh.
